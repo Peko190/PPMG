@@ -1,0 +1,44 @@
+﻿<form method="post" action="/Tasks/Create">
+    <div class="form-group">
+        <label for="task_title">Заглавие на задачата</label>
+        <input type="text" class="form-control" name="Title" id="task_title"
+               placeholder="Въведете заглавието на задачата тук" required>
+        <small class="form-text text-muted">
+            Заглавието е задължително.
+        </small>
+    </div>
+
+    <div class="form-group">
+        <label for="task_description">Описание</label>
+        <textarea class="form-control" name="Description" id="task_description"
+                  placeholder="Въведете описание на задачата"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="task_dueDate">Краен срок</label>
+        <input type="date" class="form-control" name="DueDate" id="task_dueDate" required>
+        <small class="form-text text-muted">
+            Изберете краен срок за изпълнение на задачата.
+        </small>
+    </div>
+
+    <div class="form-group">
+        <label for="task_priority">Приоритет</label>
+        <select class="form-control" name="Priority" id="task_priority">
+            <option value="Low">Нисък</option>
+            <option value="Medium" selected>Среден</option>
+            <option value="High">Висок</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="task_status">Статус</label>
+        <select class="form-control" name="Status" id="task_status">
+            <option value="Pending" selected>Предстояща</option>
+            <option value="InProgress">В процес</option>
+            <option value="Completed">Завършена</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary my-3">Запази</button>
+</form>
