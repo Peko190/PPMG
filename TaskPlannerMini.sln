@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TaskPlannerMini.Web", "Task
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TaskPlannerMini.Data", "TaskPlannerMini.Data", "{72F2BD26-C433-43E1-901C-ECFFD925FA12}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TaskPlannerMini.Services", "TaskPlannerMini.Services", "{3E5C9027-5171-465F-8C93-4F202780755A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
