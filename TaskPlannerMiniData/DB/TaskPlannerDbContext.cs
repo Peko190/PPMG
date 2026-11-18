@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TaskPlannerMiniData.Entities;
-using TaskPlannerMiniData.Enums;
 
 namespace TaskPlannerMiniData
 {
@@ -15,7 +14,6 @@ namespace TaskPlannerMiniData
         public DbSet<Category> Categories { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Reminder> Reminders { get; set; }
-    
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -31,6 +29,16 @@ namespace TaskPlannerMiniData
 
                 entity.Property(t => t.Description)
                     .HasMaxLength(1000);
+
+                entity.HasOne(t => t.Category)
+                    .WithMany(c => c.Tasks)
+                    .HasForeignKey(t => t.CategoryId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(t => t.User)
+                    .WithMany(u => u.Tasks)
+                    .HasForeignKey(t => t.UserId)
+                    .OnDelete(DeleteBehavior.Restrict);
             });
 
             modelBuilder.Entity<Category>(entity =>
@@ -62,7 +70,7 @@ namespace TaskPlannerMiniData
                 entity.HasKey(r => r.Id);
 
                 entity.HasOne(r => r.TaskItem)
-                    .WithMany()
+                    .WithMany(t => t.Reminders)
                     .HasForeignKey(r => r.TaskItemId)
                     .OnDelete(DeleteBehavior.Cascade);
             });

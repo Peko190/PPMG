@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TaskPlannerMiniData.Entities
+﻿namespace TaskPlannerMiniData.Entities
 {
     public class User
     {
@@ -13,5 +7,7 @@ namespace TaskPlannerMiniData.Entities
         public string Name { get; set; } = string.Empty;
 
         public string Email { get; set; } = string.Empty;
+
+        public ICollection<TaskItem> Tasks { get; set; } = new List<TaskItem>();
     }
 }

@@ -75,6 +75,9 @@ namespace TaskPlannerMiniData.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
@@ -93,7 +96,14 @@ namespace TaskPlannerMiniData.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Tasks");
                 });
@@ -127,12 +137,46 @@ namespace TaskPlannerMiniData.Migrations
             modelBuilder.Entity("TaskPlannerMiniData.Entities.Reminder", b =>
                 {
                     b.HasOne("TaskPlannerMiniData.Entities.TaskItem", "TaskItem")
-                        .WithMany()
+                        .WithMany("Reminders")
                         .HasForeignKey("TaskItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("TaskItem");
+                });
+
+            modelBuilder.Entity("TaskPlannerMiniData.Entities.TaskItem", b =>
+                {
+                    b.HasOne("TaskPlannerMiniData.Entities.Category", "Category")
+                        .WithMany("Tasks")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("TaskPlannerMiniData.Entities.User", "User")
+                        .WithMany("Tasks")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TaskPlannerMiniData.Entities.Category", b =>
+                {
+                    b.Navigation("Tasks");
+                });
+
+            modelBuilder.Entity("TaskPlannerMiniData.Entities.TaskItem", b =>
+                {
+                    b.Navigation("Reminders");
+                });
+
+            modelBuilder.Entity("TaskPlannerMiniData.Entities.User", b =>
+                {
+                    b.Navigation("Tasks");
                 });
 #pragma warning restore 612, 618
         }
