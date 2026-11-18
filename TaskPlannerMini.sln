@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskPlannerMini", "TaskPlan
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskPlannerMiniData", "TaskPlannerMiniData\TaskPlannerMiniData.csproj", "{2BA8B425-1F93-F44D-141C-3BACC339D03A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TaskPlannerMini.Web", "TaskPlannerMini.Web", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TaskPlannerMini.Data", "TaskPlannerMini.Data", "{72F2BD26-C433-43E1-901C-ECFFD925FA12}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +28,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A9F3584F-64DB-4746-B1AA-DBC2A0FC10ED} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{2BA8B425-1F93-F44D-141C-3BACC339D03A} = {72F2BD26-C433-43E1-901C-ECFFD925FA12}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3672E95A-7A5A-48D0-80C2-5707BCE2AAB1}
