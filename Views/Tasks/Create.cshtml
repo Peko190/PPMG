@@ -23,6 +23,16 @@
     </div>
 
     <div class="form-group">
+        <label for="task_category">Категория</label>
+        <select class="form-control" name="CategoryId" id="task_category" asp-items="ViewBag.Categories"></select>
+    </div>
+
+    <div class="form-group">
+        <label for="task_user">Потребител</label>
+        <select class="form-control" name="UserId" id="task_user" asp-items="ViewBag.Users"></select>
+    </div>
+
+    <div class="form-group">
         <label for="task_priority">Приоритет</label>
         <select class="form-control" name="Priority" id="task_priority">
             <option value="Low">Нисък</option>

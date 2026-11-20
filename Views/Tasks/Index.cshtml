@@ -1,7 +1,41 @@
-﻿@{
-    ViewData["Title"] = "Tasks";
+﻿@model IEnumerable<TaskPlannerMiniData.Entities.TaskItem>
+@{
+    ViewData["Title"] = "Задачи";
 }
 
-<h1>Tasks controller test</h1>
+<h1>Задачи</h1>
 
-<a href="/Tasks/Create" class="btn btn-primary">Добави нова задача</a>
+<a asp-controller="Tasks" asp-action="Create" class="btn btn-primary">Добави нова задача</a>
+
+@if (!Model.Any())
+{
+    <p>Все още няма добавени задачи.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Заглавие</th>
+                <th>Категория</th>
+                <th>Потребител</th>
+                <th>Краен срок</th>
+                <th>Приоритет</th>
+                <th>Статус</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var task in Model)
+            {
+                <tr>
+                    <td>@task.Title</td>
+                    <td>@task.Category.Name</td>
+                    <td>@task.User.Name</td>
+                    <td>@task.DueDate.ToString("dd.MM.yyyy")</td>
+                    <td>@task.Priority</td>
+                    <td>@task.Status</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
