@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using TaskPlannerMiniData;
+using TaskPlannerMiniServices;
+using TaskPlannerMiniServices.Contracts;
 
 namespace TaskPlannerMini.Web
 {
@@ -13,16 +15,23 @@ namespace TaskPlannerMini.Web
                 options.UseSqlServer(
                     builder.Configuration.GetConnectionString("DefaultConnection")));
 
-            // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddScoped<ITaskService, TaskService>();
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
+            }
+            else
+            {
+                using var scope = app.Services.CreateScope();
+                var db = scope.ServiceProvider.GetRequiredService<TaskPlannerDbContext>();
+
+                DemoData.Seed(db);
             }
 
             app.UseHttpsRedirection();
